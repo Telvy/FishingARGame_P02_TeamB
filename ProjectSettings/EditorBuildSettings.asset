@@ -12,6 +12,8 @@ EditorBuildSettings:
     path: Assets/_TeamB_P02_AR/Scenes/testAR.unity
     guid: 1c97f75fcd15b2c4ba182c8665d73e57
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9b83780e3aef77c48a116c48b0d02287,
+      type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 331b139474abe804784ce9bc51db40bd,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 43674074454b3a841b101ff9c87b7090,
