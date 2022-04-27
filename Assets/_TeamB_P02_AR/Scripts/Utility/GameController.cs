@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public FishGoSM FishGoSM;
 
-    public ARRootController ARRootController;
+    public GameObject ARRootController;
 
     private void Awake()
     {
@@ -21,8 +21,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        i.ARRootController.ARRoot.SetActive(false);
     }
 
 }

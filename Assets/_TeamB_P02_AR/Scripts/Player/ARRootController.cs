@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ARRootController : MonoBehaviour
 {
-    public GameObject ARRoot;
+    public GameObject ARSession;
+    public GameObject ARSessionOrigin;
+    public GameObject ARDefaultPlane;
+    public GameObject ARController;
 
 }
