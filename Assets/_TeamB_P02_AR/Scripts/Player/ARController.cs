@@ -38,10 +38,7 @@ public class ARController : MonoBehaviour
                     GameObject.Instantiate(Pond, touches[0].pose.position, touches[0].pose.rotation);
                     pondCreated = true;
                     InvokeCreatedPond();
-                    
-
                 }
-
             }
         }
     }
