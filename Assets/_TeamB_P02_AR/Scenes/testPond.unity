@@ -306,6 +306,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1741981497700813842, guid: 0058adffadebc0c4ab9c113bf187a73b,
+        type: 3}
+      propertyPath: BobberObj
+      value: 
+      objectReference: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8,
+        type: 3}
     - target: {fileID: 2809564474010436445, guid: 0058adffadebc0c4ab9c113bf187a73b,
         type: 3}
       propertyPath: m_Name

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TestSpawnBobber : MonoBehaviour
 {
 
@@ -9,12 +8,19 @@ public class TestSpawnBobber : MonoBehaviour
     [SerializeField] private GameObject Bobber;
     [SerializeField] private LayerMask _hitLayers;
     private float range = 10;
+    bool bobberActive=false;
+
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnBobber();
+            if (bobberActive == false)
+            {
+                SpawnBobber();
+                bobberActive = true;
+                //Pond.instance.SearchForFish();
+            }
         }
 
     }
