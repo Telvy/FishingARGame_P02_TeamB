@@ -10,8 +10,15 @@ public class AcquireSurfaceState : FishGoState
     public override void Enter()
     {
         Debug.Log("entered Acquire Surface State");
+        arController = GameObject.FindObjectOfType<ARController>();
         StartCoroutine(SetPondCreated());  
     }
+
+    public override void Tick()
+    {
+        //arController.CreatePond();
+    }
+
 
     public override void Exit()
     {

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class PlayState : FishGoState
 {
-    public AudioClip _pondCreatedNotif;
+    ARController arController = null;
 
     public override void Enter()
     {
         Debug.Log("entered Play State");
-        OneShotSoundManager.Instance.PlaySound(_pondCreatedNotif, 1);
-
+        arController = GameObject.FindObjectOfType<ARController>();
     }
 
     public override void Tick()
     {
-        base.Tick();
+        //arController.CreateBobber();
     }
 
     public override void Exit()

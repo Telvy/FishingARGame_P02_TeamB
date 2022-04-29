@@ -332,7 +332,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 44.78461
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -341,7 +341,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 20
-  field of view: 26.991467
+  field of view: 30.000002
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -451,8 +451,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4c4114cb3f6d149880ac0ec5e38cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pond: {fileID: 919132149155446097, guid: ed0abd33e20fbfb428beaad45d3db610, type: 3}
+  Pond: {fileID: 2809564474010436445, guid: 0058adffadebc0c4ab9c113bf187a73b, type: 3}
+  Bobber: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8, type: 3}
+  _pondCreatedNotif: {fileID: 8300000, guid: c8fe38085819926469cdf33c3b116eee, type: 3}
+  _bobberCreatedNotif: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
   RaycastManager: {fileID: 213881414330124265}
+  arCamera: {fileID: 213881413816950576}
 --- !u!1 &213881414330124180
 GameObject:
   m_ObjectHideFlags: 0

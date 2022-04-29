@@ -7,22 +7,61 @@ using UnityEngine.XR.ARFoundation;
 public class ARController : MonoBehaviour
 {
     public event Action PondCreated = delegate { };
+    public event Action BobberCreated = delegate { };
 
-    public GameObject Pond;
+    [Header("Main Game Play Objects")]
+    [SerializeField] private GameObject Pond;
+    [SerializeField] private GameObject Bobber;
+
+    [Header("Audio Feedback")]
+    [SerializeField] private AudioClip _pondCreatedNotif;
+    [SerializeField] private AudioClip _bobberCreatedNotif;
+
+    [Header("AR Detection")]
+    private GameObject lastHitObj;
     public ARRaycastManager RaycastManager;
-    private bool pondCreated = false;
+    public Camera arCamera;
 
-    private void Update()
+    private bool pondCreated = false;
+    private bool bobberCreated = false;
+
+    enum FishingStates
     {
-        CreatePond();
+        PONDCREATION,
+        BOBBERCREATION,
     }
+
+    private FishingStates _FishingStates;
 
     private void InvokeCreatedPond()
     {
         PondCreated?.Invoke();
     }
 
-    private void CreatePond()
+    private void InvokeCreatedBobber()
+    {
+        BobberCreated?.Invoke();
+    }
+
+    public void Update()
+    {
+        GameFishingStates();
+    }
+
+    private void GameFishingStates()
+    {
+        switch (_FishingStates)
+        {
+            default: //Create Pond
+                CreatePond();
+                break;
+            case FishingStates.BOBBERCREATION:
+                CreateBobber();
+                break;
+        }
+    }
+
+    public void CreatePond()
     {
         if (!pondCreated)
         {
@@ -34,13 +73,41 @@ public class ARController : MonoBehaviour
 
                 if (touches.Count > 0)
                 {
-
                     GameObject.Instantiate(Pond, touches[0].pose.position, touches[0].pose.rotation);
                     pondCreated = true;
+                    OneShotSoundManager.Instance.PlaySound(_pondCreatedNotif, 1);
                     InvokeCreatedPond();
+                    _FishingStates = FishingStates.BOBBERCREATION;
                 }
             }
         }
     }
 
+
+    public void CreateBobber()
+    {
+        if (!bobberCreated)
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+
+                    lastHitObj = hit.transform.gameObject;
+                    Pond pond = hit.transform.gameObject.GetComponent<Pond>();
+                    if (pond != null)
+                    {
+                        Instantiate(Bobber, hit.point, Quaternion.identity);
+                        OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
+                        bobberCreated = true;
+                        InvokeCreatedBobber();
+                    }
+                }
+            }
+        }
+    }
 }
+
+
