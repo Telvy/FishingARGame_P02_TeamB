@@ -398,7 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bobber: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8, type: 3}
-  camera: {fileID: 0}
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &1443326963
 Transform:
   m_ObjectHideFlags: 0
@@ -424,6 +426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FishObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191291926265391906, guid: 315e7a8d6370f8f4faebaca041858b98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8427926139773444992, guid: 315e7a8d6370f8f4faebaca041858b98,
         type: 3}

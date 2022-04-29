@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Pond : MonoBehaviour
 {
-   // [SerializeField] private
+    [SerializeField] private GameObject[] FishObj;
+    public GameObject BobberObj;
+
+    private void SearchForFish()
+    {
+
+    }
 
 }
