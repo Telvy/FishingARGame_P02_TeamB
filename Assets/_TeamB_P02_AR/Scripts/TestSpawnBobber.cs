@@ -6,24 +6,32 @@ public class TestSpawnBobber : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private GameObject Bobber;
+    [SerializeField] private AudioClip _bobberCreatedSFX;
     [SerializeField] private LayerMask _hitLayers;
     private float range = 10;
-    bool bobberActive=false;
+    private int ActiveBobbers = 1;
+
 
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (bobberActive == false)
+            if (0 < ActiveBobbers)
             {
                 SpawnBobber();
-                bobberActive = true;
+                ActiveBobbers--;
                 //Pond.instance.SearchForFish();
             }
         }
 
     }
+
+    public void ResetBobbers()
+    {
+        ActiveBobbers = 1;
+    }
+
     private void SpawnBobber()
     {
         Vector3 direction = Vector3.down;
@@ -36,7 +44,8 @@ public class TestSpawnBobber : MonoBehaviour
             Pond pond = hit.transform.gameObject.GetComponent<Pond>();
             if(pond != null)
             {
-                //Debug.Log("Bobber spawned");
+                Debug.Log("Bobber spawned");
+                OneShotSoundManager.Instance.PlaySound(_bobberCreatedSFX, 1);
                 Instantiate(Bobber, hit.point, Quaternion.identity);
             }
         }

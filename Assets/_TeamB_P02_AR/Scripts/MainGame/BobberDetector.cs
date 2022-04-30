@@ -13,9 +13,12 @@ public class BobberDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //REMINDER: replace type TestSpawnBobber with type Bobber once we are done
+        //testing the general fishing mechanics
         if (other.gameObject.GetComponent<Bobber>())
         {
-            parent.BobberObj = other.gameObject;
+            parent.Bobber = other.gameObject.GetComponent<Bobber>();
+            parent.SearchForFish();
             Debug.Log("pond collided with bobber");
         }
     }

@@ -32,7 +32,10 @@ public class ARController : MonoBehaviour
     }
 
     private FishingStates _FishingStates;
-
+    private void Start()
+    {
+        
+    }
     private void InvokeCreatedPond()
     {
         PondCreated?.Invoke();
@@ -53,15 +56,16 @@ public class ARController : MonoBehaviour
         switch (_FishingStates)
         {
             default: //Create Pond
-                CreatePond();
+                CreatingPond();
                 break;
             case FishingStates.BOBBERCREATION:
-                CreateBobber();
+                CreatingBobber();
                 break;
         }
     }
 
-    public void CreatePond()
+
+    public void CreatingPond()
     {
         if (!pondCreated)
         {
@@ -84,7 +88,7 @@ public class ARController : MonoBehaviour
     }
 
 
-    public void CreateBobber()
+    public void CreatingBobber()
     {
         if (!bobberCreated)
         {
@@ -108,6 +112,8 @@ public class ARController : MonoBehaviour
             }
         }
     }
+
 }
+
 
 

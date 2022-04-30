@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bobber: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8, type: 3}
+  _bobberCreatedSFX: {fileID: 8300000, guid: c8fe38085819926469cdf33c3b116eee, type: 3}
   _hitLayers:
     serializedVersion: 2
     m_Bits: 8

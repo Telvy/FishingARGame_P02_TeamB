@@ -12,9 +12,14 @@ public class Bobber : MonoBehaviour
         if (other.transform.gameObject.GetComponent<Pond>())
         {
             //Debug.Log("Pond has collided with bobber");
-            Instantiate(_waterSplash, transform.position, Quaternion.identity);
+            ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
+            Destroy(waterSplash, 1);
         }
     }
 
+    public void DestroyBobber()
+    {
+        Destroy(this.gameObject);
+    }
 
 }

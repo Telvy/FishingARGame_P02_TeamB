@@ -5,15 +5,17 @@ using UnityEngine;
 public class Pond : MonoBehaviour
 {
     [SerializeField] private GameObject[] FishObj;
-    public GameObject BobberObj;
+    public Bobber Bobber;
+    public TestSpawnBobber TestSpawnBobber;
 
     double timeTillCatchable;
     [SerializeField] float timeTillUncatchable = 1.5f;
     bool catchable = false;
 
     [Header("FX/Animiation")]
-    [SerializeField] AudioSource CatchableSFX;
-    [SerializeField] AudioSource CaughtSFX;
+    [SerializeField] AudioClip CatchableSFX;
+    [SerializeField] AudioClip CaughtSFX;
+    [SerializeField] AudioClip MissedSFX;
 
     //public static Pond instance;
 
@@ -21,7 +23,7 @@ public class Pond : MonoBehaviour
     private void Update()
     {
         //User input
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //Checks if the fish is in a catchable state
             if (catchable==true)
@@ -36,9 +38,11 @@ public class Pond : MonoBehaviour
     }
     public void fishCaught()
     {
-        //CaughtSFX.Play();
         Debug.Log("Fish Caught!");
+        OneShotSoundManager.Instance.PlaySound(CaughtSFX, 1);
         StopAllCoroutines();
+        Bobber.DestroyBobber();
+        TestSpawnBobber.ResetBobbers();
         catchable = false;
     }
     //Returns a pseudorandom double between the two values passed in
@@ -63,8 +67,12 @@ public class Pond : MonoBehaviour
     IEnumerator tillUncatchable()
     {
         catchable = true;
-        //CatchableSFX.Play();
+        OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
         yield return new WaitForSeconds(timeTillUncatchable);
+        OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
+        Bobber.DestroyBobber();
+        TestSpawnBobber.ResetBobbers();
+        Debug.Log("Fish escaped!");
         catchable = false;
     }
 }

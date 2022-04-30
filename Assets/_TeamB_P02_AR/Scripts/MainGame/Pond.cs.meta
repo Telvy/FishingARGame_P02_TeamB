@@ -3,7 +3,11 @@ guid: c2717dd158367be48b887b5d152a4b5c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BobberObj: {fileID: 919132149155446097, guid: 073ff9a702bbd1b41b6491f41aa38b98,
+      type: 3}
+  - CatchableSFX: {instanceID: 0}
+  - CaughtSFX: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
