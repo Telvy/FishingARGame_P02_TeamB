@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &797265671694090916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5919618369706261238}
-  m_Layer: 3
-  m_Name: BobberOffset
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5919618369706261238
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797265671694090916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.216, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2809564474010436447}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2279537497619813343
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +120,6 @@ Transform:
   m_Children:
   - {fileID: 2809564473785008411}
   - {fileID: 7117796803616549390}
-  - {fileID: 5919618369706261238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -165,8 +134,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0207863, y: 0.070561305, z: 1.5993018}
-  m_Center: {x: -0.008025408, y: 0.029784255, z: -0.0059548616}
+  m_Size: {x: 2.0207863, y: 0.118682496, z: 1.5993018}
+  m_Center: {x: -0.008025408, y: 0.05384485, z: -0.0059548616}
 --- !u!114 &1741981497700813842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +151,9 @@ MonoBehaviour:
   FishObj:
   - {fileID: 6191291926265391906, guid: 315e7a8d6370f8f4faebaca041858b98, type: 3}
   Bobber: {fileID: 0}
+  TestSpawnBobber: {fileID: 0}
   timeTillUncatchable: 1.5
+  catchable: 0
   CatchableSFX: {fileID: 8300000, guid: 12ee7ebf02bdfd14ebb5d68f07977c39, type: 3}
   CaughtSFX: {fileID: 8300000, guid: 8540480d2d99df045a445dc6be0e30d9, type: 3}
   MissedSFX: {fileID: 8300000, guid: 05973c37e4e6c784aa451d2b834e0f8f, type: 3}

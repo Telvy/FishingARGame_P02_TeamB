@@ -14,7 +14,7 @@ public class PlayState : FishGoState
 
     public override void Tick()
     {
-        //arController.CreateBobber();
+        arController.CatchFish();
     }
 
     public override void Exit()

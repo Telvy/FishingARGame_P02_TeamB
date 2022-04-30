@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1581527876569680361}
   - component: {fileID: 9027218268992301040}
   - component: {fileID: 1471659268196441566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BobberObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,10 +42,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5705975684793789146}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9027218268992301040
 MonoBehaviour:
@@ -61,6 +61,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waterSplash: {fileID: 1376729219401198430, guid: b6ba128b50fc1654db24e4af37b0547a,
     type: 3}
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  range: 10
 --- !u!54 &1471659268196441566
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3082141752823037461}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

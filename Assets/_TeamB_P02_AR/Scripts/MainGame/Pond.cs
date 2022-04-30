@@ -10,7 +10,7 @@ public class Pond : MonoBehaviour
 
     double timeTillCatchable;
     [SerializeField] float timeTillUncatchable = 1.5f;
-    bool catchable = false;
+    public bool catchable = false;
 
     [Header("FX/Animiation")]
     [SerializeField] AudioClip CatchableSFX;
