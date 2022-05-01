@@ -8,6 +8,7 @@ public class Bobber : MonoBehaviour
     [SerializeField] private ParticleSystem _waterSplash;
     [SerializeField] private LayerMask _hitLayers;
     [SerializeField] private float range = 10;
+    private bool waterSplashing = false;
 
     //private void OnTriggerEnter(Collider other)
     //{
@@ -18,6 +19,11 @@ public class Bobber : MonoBehaviour
     //        Destroy(waterSplash, 1);
     //    }
     //}
+
+    private void Start()
+    {
+        StartCoroutine(WaterSplash());
+    }
 
     private void Update()
     {
@@ -35,10 +41,18 @@ public class Bobber : MonoBehaviour
             Pond pond = hit.transform.gameObject.GetComponent<Pond>();
             if (pond != null)
             {
-                ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
-                Destroy(waterSplash, 1);
+                //StartCoroutine(WaterSplash());
+                waterSplashing = true;
             }
         }
+    }
+
+    IEnumerator WaterSplash()
+    {
+        while (!waterSplashing)
+            yield return null;
+        ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
+        Destroy(waterSplash, 1);
     }
 
     public void DestroyBobber()

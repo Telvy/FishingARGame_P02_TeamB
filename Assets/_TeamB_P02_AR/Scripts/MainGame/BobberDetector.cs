@@ -17,7 +17,7 @@ public class BobberDetector : MonoBehaviour
         //testing the general fishing mechanics
         if (other.gameObject.GetComponent<Bobber>())
         {
-            parent.Bobber = other.gameObject.GetComponent<Bobber>();
+            //parent.BobberObj.GetComponent<Bobber) = other.GetComponent<Bobber>();
             parent.SearchForFish();
             Debug.Log("pond collided with bobber");
         }
