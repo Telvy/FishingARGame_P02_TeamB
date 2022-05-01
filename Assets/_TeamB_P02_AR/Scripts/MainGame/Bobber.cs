@@ -12,11 +12,13 @@ public class Bobber : MonoBehaviour
     [SerializeField] private float range = 10;
 
     private Pond pond;
+    private ARController arController;
     private bool waterSplashing = false;
 
     private void Start()
     {
         //StartCoroutine(PondImpact());
+        arController = GameObject.FindObjectOfType<ARController>();
     }
 
     private void OnEnable()
@@ -50,33 +52,9 @@ public class Bobber : MonoBehaviour
         }
     }
 
-    //private void DetectPond()
-    //{
-    //    Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
-    //    foreach (var hitCollider in hitColliders)
-    //    {
-    //        pond = hitCollider.transform.gameObject.GetComponent<Pond>();
-    //        if(pond != null)
-    //        {
-    //            pond.SearchForFish();
-    //            ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
-    //            Destroy(waterSplash, 1);
-    //        }
-    //    }
-    //}
-
-    //IEnumerator PondImpact()
-    //{
-    //    while (!waterSplashing)
-    //        yield return null;
-    //    pond.SearchForFish();
-    //    ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
-    //    Destroy(waterSplash, 1);
-    //}
-
     private void PondImpact()
     {
-        pond.SearchForFish();
+        arController.SearchForFish();
         ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
         Destroy(waterSplash, 1);
         this.PondTouched -= PondImpact;

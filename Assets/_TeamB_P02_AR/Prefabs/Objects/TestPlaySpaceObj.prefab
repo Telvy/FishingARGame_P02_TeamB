@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7117796803616549390}
   - component: {fileID: 1338783096376727042}
-  - component: {fileID: 1643227308392700758}
+  - component: {fileID: 558010266638327704}
   m_Layer: 3
   m_Name: BobberDetector
   m_TagString: Untagged
@@ -71,20 +71,20 @@ BoxCollider:
   m_GameObject: {fileID: 2279537497619813343}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.0207863, y: 0.29647526, z: 1.5993018}
   m_Center: {x: -0.008025408, y: 0.14274125, z: -0.0059548616}
---- !u!114 &1643227308392700758
+--- !u!114 &558010266638327704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2279537497619813343}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc8c20b62cb05043958593e9b24d7a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 87af379fe00d4b147a0b7b5309f26e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2809564473785008408
@@ -128,10 +128,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2809564474010436447}
   - component: {fileID: 2809564474010436444}
-  - component: {fileID: 1741981497700813842}
   - component: {fileID: 6743367744510223143}
+  - component: {fileID: 3083729691521216704}
   m_Layer: 3
-  m_Name: PlaySpaceObj
+  m_Name: TestPlaySpaceObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,30 +168,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0207863, y: 0.118682496, z: 1.5993018}
   m_Center: {x: -0.008025408, y: 0.05384485, z: -0.0059548616}
---- !u!114 &1741981497700813842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2809564474010436445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2717dd158367be48b887b5d152a4b5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  SpawnerPoint: {fileID: 58936300323129167}
-  PondObj: {fileID: 0}
-  BobberObj: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8,
-    type: 3}
-  BobberOffset: {fileID: 5146672818772111949}
-  _bobberCreatedSFX: {fileID: 8300000, guid: 05973c37e4e6c784aa451d2b834e0f8f, type: 3}
-  CatchableSFX: {fileID: 8300000, guid: 12ee7ebf02bdfd14ebb5d68f07977c39, type: 3}
-  CaughtSFX: {fileID: 8300000, guid: 8540480d2d99df045a445dc6be0e30d9, type: 3}
-  MissedSFX: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
 --- !u!54 &6743367744510223143
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -208,6 +184,31 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &3083729691521216704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809564474010436445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5722715a742fc504c8428ee57f59bbca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  SpawnerPoint: {fileID: 58936300323129167}
+  TestBobber: {fileID: 3033054909510719276, guid: 87141b761cf0e8244b7443351549172d,
+    type: 3}
+  TestBobberObj: {fileID: 5705975684793789146, guid: 87141b761cf0e8244b7443351549172d,
+    type: 3}
+  BobberOffset: {fileID: 5146672818772111949}
+  _bobberCreatedSFX: {fileID: 8300000, guid: 05973c37e4e6c784aa451d2b834e0f8f, type: 3}
+  CatchableSFX: {fileID: 8300000, guid: 12ee7ebf02bdfd14ebb5d68f07977c39, type: 3}
+  CaughtSFX: {fileID: 8300000, guid: 8540480d2d99df045a445dc6be0e30d9, type: 3}
+  MissedSFX: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
 --- !u!1 &6557352383918677741
 GameObject:
   m_ObjectHideFlags: 0
