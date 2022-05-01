@@ -76,7 +76,6 @@ public class Pond : MonoBehaviour
         Ray ray = new Ray(SpawnerPoint.position, transform.TransformDirection(direction * range));
         RaycastHit hit;
         Debug.DrawRay(SpawnerPoint.position, transform.TransformDirection(direction * range));
-
         if (Physics.Raycast(ray, out hit, _hitLayers))
         {
             Pond pond = hit.transform.gameObject.GetComponent<Pond>();
@@ -137,6 +136,7 @@ public class Pond : MonoBehaviour
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
+        StopAllCoroutines();
         OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
         BobberInstance.SetActive(false);
         ResetBobbers();

@@ -454,14 +454,12 @@ MonoBehaviour:
   PondObj: {fileID: 2809564474010436445, guid: 0058adffadebc0c4ab9c113bf187a73b, type: 3}
   BobberObj: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8,
     type: 3}
-  timeTillCatchable: 0
-  timeTillUncatchable: 1.5
-  catchable: 0
+  BobberOffset: {fileID: 0}
   _pondCreatedNotif: {fileID: 8300000, guid: c8fe38085819926469cdf33c3b116eee, type: 3}
   _bobberCreatedNotif: {fileID: 8300000, guid: 05973c37e4e6c784aa451d2b834e0f8f, type: 3}
-  CatchableSFX: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
-  CaughtSFX: {fileID: 8300000, guid: 12ee7ebf02bdfd14ebb5d68f07977c39, type: 3}
-  MissedSFX: {fileID: 8300000, guid: 8540480d2d99df045a445dc6be0e30d9, type: 3}
+  CatchableSFX: {fileID: 8300000, guid: 12ee7ebf02bdfd14ebb5d68f07977c39, type: 3}
+  CaughtSFX: {fileID: 8300000, guid: 8540480d2d99df045a445dc6be0e30d9, type: 3}
+  MissedSFX: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
   RaycastManager: {fileID: 213881414330124265}
   arCamera: {fileID: 213881413816950576}
   _hitLayers:

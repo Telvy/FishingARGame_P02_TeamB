@@ -5,29 +5,33 @@ using UnityEngine;
 
 public class Bobber : MonoBehaviour
 {
+    public event Action PondTouched = delegate { };
+
     [SerializeField] private ParticleSystem _waterSplash;
     [SerializeField] private LayerMask _hitLayers;
     [SerializeField] private float range = 10;
-    private bool waterSplashing = false;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.transform.gameObject.GetComponent<Pond>())
-    //    {
-    //        //Debug.Log("Pond has collided with bobber");
-    //        ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
-    //        Destroy(waterSplash, 1);
-    //    }
-    //}
+    private Pond pond;
+    private bool waterSplashing = false;
 
     private void Start()
     {
-        StartCoroutine(WaterSplash());
+        //StartCoroutine(PondImpact());
+    }
+
+    private void OnEnable()
+    {
+        this.PondTouched += PondImpact;
     }
 
     private void Update()
     {
         DetectPond();
+    }
+
+    private void InvokePondTouched()
+    {
+        PondTouched?.Invoke();
     }
 
     private void DetectPond()
@@ -38,21 +42,44 @@ public class Bobber : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(direction * range));
         if (Physics.Raycast(ray, out hit, _hitLayers))
         {
-            Pond pond = hit.transform.gameObject.GetComponent<Pond>();
+            pond = hit.transform.gameObject.GetComponent<Pond>();
             if (pond != null)
             {
-                //StartCoroutine(WaterSplash());
-                waterSplashing = true;
+                InvokePondTouched();
             }
         }
     }
 
-    IEnumerator WaterSplash()
+    //private void DetectPond()
+    //{
+    //    Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+    //    foreach (var hitCollider in hitColliders)
+    //    {
+    //        pond = hitCollider.transform.gameObject.GetComponent<Pond>();
+    //        if(pond != null)
+    //        {
+    //            pond.SearchForFish();
+    //            ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
+    //            Destroy(waterSplash, 1);
+    //        }
+    //    }
+    //}
+
+    //IEnumerator PondImpact()
+    //{
+    //    while (!waterSplashing)
+    //        yield return null;
+    //    pond.SearchForFish();
+    //    ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
+    //    Destroy(waterSplash, 1);
+    //}
+
+    private void PondImpact()
     {
-        while (!waterSplashing)
-            yield return null;
+        pond.SearchForFish();
         ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
         Destroy(waterSplash, 1);
+        this.PondTouched -= PondImpact;
     }
 
     public void DestroyBobber()

@@ -12,7 +12,7 @@ public class ARController : MonoBehaviour
 
     [Header("Main Game Play Objects")]
     [SerializeField] private GameObject PondObj;
-    [SerializeField] private GameObject BobberObj;
+    [SerializeField] public GameObject BobberObj;
     private GameObject BobberInstance = null;
     [SerializeField] private Transform BobberOffset;
 
@@ -118,11 +118,9 @@ public class ARController : MonoBehaviour
             {
                 Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, _hitLayers))
                 {
-
-                    GameObject lastHitObj = hit.transform.gameObject;
-                    Pond pond = lastHitObj.GetComponent<Pond>();
+                    Pond pond = hit.transform.gameObject.GetComponent<Pond>();
                     if (pond != null)
                     {
                         BobberInstance.transform.position = hit.point;
@@ -138,37 +136,42 @@ public class ARController : MonoBehaviour
         }
     }
 
+    public void CatchingFish()
+    {
+        if (bobberCreated)
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, _hitLayers))
+                {
+                    GameObject lastHitObj = hit.transform.gameObject;
+                    Bobber bobber = lastHitObj.GetComponent<Bobber>();
+                    if (bobber != null)
+                    {
+                        if (catchable == true)
+                        {
+                            fishCaught();
+                        }
+                    }
+                }
+            }
+        }  
+    }
+
+
     public void ResetBobbers()
     {
         //ActiveBobbers = 1;
         bobberCreated = false;
     }
 
-    public void CatchingFish()
-    {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                GameObject lastHitObj = hit.transform.gameObject;
-                Bobber bobber = lastHitObj.GetComponent<Bobber>();
-                if(bobber != null)
-                {
-                    if (catchable == true)
-                    {
-                        fishCaught();
-                    }
-                }  
-            }
-        }
-    }
-
     public void SearchForFish()
     {
         StartCoroutine(tillCatchable());
     }
+ 
     public void fishCaught()
     {
         Debug.Log("Fish Caught!");
@@ -205,6 +208,7 @@ public class ARController : MonoBehaviour
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
+        StopAllCoroutines();
         OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
         BobberInstance.SetActive(false);
         ResetBobbers();
