@@ -14,7 +14,7 @@ public class ARController : MonoBehaviour
     [SerializeField] private GameObject PondObj;
     [SerializeField] public GameObject BobberObj;
     private GameObject BobberInstance = null;
-    [SerializeField] private Transform BobberOffset;
+    private Transform BobberOffset;
 
     [Header("Audio Feedback")]
     [SerializeField] private AudioClip _pondCreatedNotif;
@@ -31,10 +31,10 @@ public class ARController : MonoBehaviour
     //conditional data
     private bool pondCreated = false;
     private bool bobberCreated = false;
-    //private int ActiveBobbers = 5;
     private double timeTillCatchable;
     private float timeTillUncatchable = 1.5f;
     private bool catchable = false;
+    private int ActiveBobbers = 1;
 
     enum FishingStates
     {
@@ -49,11 +49,6 @@ public class ARController : MonoBehaviour
     {
         PondCreated?.Invoke();
     }
-
-    //private void InvokeCreatedBobber()
-    //{
-    //    BobberCreated?.Invoke();
-    //}
 
     public void Awake()
     {
@@ -112,7 +107,7 @@ public class ARController : MonoBehaviour
 
     public void CreatingBobber()
     {
-        if (!bobberCreated)
+        if (0 < ActiveBobbers)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -123,13 +118,12 @@ public class ARController : MonoBehaviour
                     Pond pond = hit.transform.gameObject.GetComponent<Pond>();
                     if (pond != null)
                     {
+                        Debug.Log("Bobber spawned");
                         BobberInstance.transform.position = hit.point;
                         BobberInstance.SetActive(true);
                         OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
-                        bobberCreated = true;
-                        //ActiveBobbers--;
+                        ActiveBobbers--;
                         _FishingStates = FishingStates.CATCHINGFISH;
-                        //InvokeCreatedBobber();
                     }
                 }
             }
@@ -138,33 +132,29 @@ public class ARController : MonoBehaviour
 
     public void CatchingFish()
     {
-        if (bobberCreated)
-        {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _hitLayers))
+            Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, _hitLayers))
+            {
+                GameObject lastHitObj = hit.transform.gameObject;
+                Bobber bobber = lastHitObj.GetComponent<Bobber>();
+                if (bobber != null)
                 {
-                    GameObject lastHitObj = hit.transform.gameObject;
-                    Bobber bobber = lastHitObj.GetComponent<Bobber>();
-                    if (bobber != null)
+                    if (catchable == true)
                     {
-                        if (catchable == true)
-                        {
-                            fishCaught();
-                        }
+                        fishCaught();
                     }
                 }
             }
-        }  
+        }
     }
 
 
     public void ResetBobbers()
     {
-        //ActiveBobbers = 1;
-        bobberCreated = false;
+        ActiveBobbers = 1;
     }
 
     public void SearchForFish()

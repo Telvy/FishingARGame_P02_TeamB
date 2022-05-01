@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPondDetector : MonoBehaviour
+public class PondDetector : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _waterSplash;
     private ParticleSystem _waterSplashInstance;
-    private testPond pond;
+    private ARController arController;
 
     private void Awake()
     {
@@ -14,17 +14,21 @@ public class TestPondDetector : MonoBehaviour
         _waterSplashInstance.transform.position = this.transform.position;
     }
 
+    private void Start()
+    {
+        arController = GameObject.FindObjectOfType<ARController>();
+    }
+
     private void OnEnable()
     {
-        _waterSplash.transform.position = this.transform.position;  
+        _waterSplash.transform.position = this.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<testPond>())
+        if (other.gameObject.GetComponent<Pond>())
         {
-            testPond pond = other.gameObject.GetComponent<testPond>();
-            pond.SearchForFish();
+            arController.SearchForFish();
             PondImpact();
         }
     }

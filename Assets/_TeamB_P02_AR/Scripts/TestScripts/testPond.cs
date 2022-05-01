@@ -105,7 +105,6 @@ public class testPond : MonoBehaviour
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
-        // _FishingStates = FishingStates.BOBBERCREATION;
     }
     //Returns a pseudorandom double between the two values passed in
     public double RandomDoubleWithinRange(double lowerLimit, double upperLimit)
@@ -138,6 +137,5 @@ public class testPond : MonoBehaviour
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
-        //_FishingStates = FishingStates.BOBBERCREATION;
     }
 }
