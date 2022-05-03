@@ -21,7 +21,6 @@ public class TestSpawnBobber : MonoBehaviour
             {
                 SpawnBobber();
                 ActiveBobbers--;
-                //Pond.instance.SearchForFish();
             }
         }
 
