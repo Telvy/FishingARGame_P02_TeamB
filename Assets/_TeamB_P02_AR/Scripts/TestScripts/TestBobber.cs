@@ -7,6 +7,7 @@ public class TestBobber : MonoBehaviour
     [SerializeField] private ParticleSystem _waterSplash;
     [SerializeField] private LayerMask _hitLayers;
     [SerializeField] private float range = 10;
+    [SerializeField] Animator animator;
 
     private testPond pond;
     private bool waterSplashing = false;
@@ -43,6 +44,7 @@ public class TestBobber : MonoBehaviour
        // pond.SearchForFish();
         ParticleSystem waterSplash = Instantiate(_waterSplash, transform.position, Quaternion.identity);
         Destroy(waterSplash, 1);
+        animator.SetBool("instantiate", true);
     }
 
     public void DestroyBobber()
