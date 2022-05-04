@@ -16,6 +16,11 @@ public class ARController : MonoBehaviour
     private GameObject BobberInstance = null;
     private Transform BobberOffset;
 
+    [Header("UI Elements")]
+    [SerializeField] private GameObject PlacePondUI;
+    [SerializeField] private GameObject PlaceBobberUI;
+    [SerializeField] private GameObject CatchFishUI;
+
     [Header("Audio Feedback")]
     [SerializeField] private AudioClip _pondCreatedNotif;
     [SerializeField] private AudioClip _bobberCreatedNotif;
@@ -97,6 +102,11 @@ public class ARController : MonoBehaviour
                 {
                     GameObject.Instantiate(PondObj, touches[0].pose.position, touches[0].pose.rotation);
                     pondCreated = true;
+
+                    //Close Place Pond UI and open Place Bobber UI
+                    PlacePondUI.SetActive(false);
+                    PlaceBobberUI.SetActive(true);
+
                     OneShotSoundManager.Instance.PlaySound(_pondCreatedNotif, 1);
                     InvokeCreatedPond();
                     _FishingStates = FishingStates.BOBBERCREATION;
@@ -121,6 +131,11 @@ public class ARController : MonoBehaviour
                         Debug.Log("Bobber spawned");
                         BobberInstance.transform.position = hit.point;
                         BobberInstance.SetActive(true);
+
+                        //Close Place Bobber UI and open Catch Fish UI
+                        PlaceBobberUI.SetActive(false);
+                        CatchFishUI.SetActive(true);
+
                         OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
                         ActiveBobbers--;
                         _FishingStates = FishingStates.CATCHINGFISH;
@@ -170,6 +185,11 @@ public class ARController : MonoBehaviour
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
+
+        //Close Catch Fish and open Place Bobber UI
+        CatchFishUI.SetActive(false);
+        PlaceBobberUI.SetActive(true);
+
         _FishingStates = FishingStates.BOBBERCREATION;
     }
     //Returns a pseudorandom double between the two values passed in
@@ -203,6 +223,11 @@ public class ARController : MonoBehaviour
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
+
+        //Close Catch Fish and open Place Bobber UI
+        CatchFishUI.SetActive(false);
+        PlaceBobberUI.SetActive(true);
+
         _FishingStates = FishingStates.BOBBERCREATION;
     }
 }
