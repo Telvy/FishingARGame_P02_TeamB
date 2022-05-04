@@ -22,19 +22,20 @@ public class ARController : MonoBehaviour
     [SerializeField] private GameObject CatchFishUI;
 
     [Header("Audio Feedback")]
-    [SerializeField] private AudioClip _pondCreatedNotif;
-    [SerializeField] private AudioClip _bobberCreatedNotif;
+    
     [SerializeField] private AudioClip CatchableSFX;
     [SerializeField] private AudioClip CaughtSFX;
-    [SerializeField] private AudioClip MissedSFX;
-
+    [SerializeField] private AudioClip MissedSFX;
+
+
+
     [Header("VFX")]
     [SerializeField] private ParticleSystem CaughtFish;
 
     [Header("AR Detection")]
     public ARRaycastManager RaycastManager;
     public Camera arCamera;
-    [SerializeField] private LayerMask _hitLayers;
+    [SerializeField] private LayerMask _bobberLayer, _pondLayer;
 
     //conditional data
     private bool pondCreated = false;
@@ -110,7 +111,6 @@ public class ARController : MonoBehaviour
                     PlacePondUI.SetActive(false);
                     PlaceBobberUI.SetActive(true);
 
-                    OneShotSoundManager.Instance.PlaySound(_pondCreatedNotif, 1);
                     InvokeCreatedPond();
                     _FishingStates = FishingStates.BOBBERCREATION;
                 }
@@ -126,7 +126,7 @@ public class ARController : MonoBehaviour
             {
                 Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _hitLayers))
+                if (Physics.Raycast(ray, out hit, _pondLayer))
                 {
                     Pond pond = hit.transform.gameObject.GetComponent<Pond>();
                     if (pond != null)
@@ -139,7 +139,6 @@ public class ARController : MonoBehaviour
                         PlaceBobberUI.SetActive(false);
                         CatchFishUI.SetActive(true);
 
-                        OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
                         ActiveBobbers--;
                         _FishingStates = FishingStates.CATCHINGFISH;
                     }
@@ -154,7 +153,7 @@ public class ARController : MonoBehaviour
             {
             Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, _hitLayers))
+            if (Physics.Raycast(ray, out hit, _bobberLayer))
             {
                 GameObject lastHitObj = hit.transform.gameObject;
                 Bobber bobber = lastHitObj.GetComponent<Bobber>();
@@ -190,9 +189,12 @@ public class ARController : MonoBehaviour
         animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
-        catchable = false;
-
-        //Close Catch Fish and open Place Bobber UI
+        catchable = false;
+
+
+
+        //Close Catch Fish and open Place Bobber UI
+
         CatchFishUI.SetActive(false);
         PlaceBobberUI.SetActive(true);
 

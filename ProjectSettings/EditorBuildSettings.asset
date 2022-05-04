@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_TeamB_P02_AR/Scenes/GameScene.unity
     guid: 08de253bcfec34845a4b35e13ec5b4dd
-  - enabled: 0
-    path: Assets/_TeamB_P02_AR/Scenes/testAR.unity
-    guid: 1c97f75fcd15b2c4ba182c8665d73e57
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 8bfc66840943fa646b04a9a3c62eb826,
       type: 2}

@@ -5,5 +5,11 @@ using UnityEngine;
 
 public class Bobber : MonoBehaviour
 {
+    [SerializeField] private AudioClip _bobberCreatedNotif;
+
+    private void OnEnable()
+    {
+        OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
+    }
 
 }

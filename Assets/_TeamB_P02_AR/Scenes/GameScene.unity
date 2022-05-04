@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 41218568}
   - component: {fileID: 41218570}
   - component: {fileID: 41218569}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Panel_img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56352691}
   - component: {fileID: 56352692}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PlacePondUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlacePondUI
       value: 
-      objectReference: {fileID: 56352690}
+      objectReference: {fileID: 322977539}
     - target: {fileID: 213881414009421836, guid: 28dc3f6650beb4b4b9356434a5e965d4,
         type: 3}
       propertyPath: PlaceBobberUI
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322977540}
   - component: {fileID: 322977541}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CatchFishUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 501147442}
   - component: {fileID: 501147444}
   - component: {fileID: 501147443}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 513436170}
   - component: {fileID: 513436172}
   - component: {fileID: 513436171}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 804786673}
   - component: {fileID: 804786675}
   - component: {fileID: 804786674}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Panel_img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 869037990}
   - component: {fileID: 869037992}
   - component: {fileID: 869037991}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Panel_img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,49 +910,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869037989}
   m_CullTransparentMesh: 1
---- !u!1 &1046837585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1046837587}
-  - component: {fileID: 1046837586}
-  m_Layer: 0
-  m_Name: TestFoundObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1046837586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046837585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90395e59ce4a1f241b80dd6610305ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1046837587
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046837585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0238592, y: 0.09928597, z: 0.16018762}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1541135747
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,7 +920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541135748}
   - component: {fileID: 1541135749}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PlaceBobberUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1031,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865132236
 GameObject:
@@ -1088,13 +1045,13 @@ GameObject:
   - component: {fileID: 1865132239}
   - component: {fileID: 1865132238}
   - component: {fileID: 1865132237}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1865132237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,7 +1128,7 @@ RectTransform:
   - {fileID: 1541135748}
   - {fileID: 322977540}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1189,7 +1146,7 @@ GameObject:
   - component: {fileID: 1881054616}
   - component: {fileID: 1881054618}
   - component: {fileID: 1881054617}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

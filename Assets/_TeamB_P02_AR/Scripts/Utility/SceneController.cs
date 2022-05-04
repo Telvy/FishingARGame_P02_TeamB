@@ -39,20 +39,20 @@ public class SceneController : MonoBehaviour
 
     private void Update()
     {
-        currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+        //currentScene = SceneManager.GetActiveScene();
+        //string sceneName = currentScene.name;
 
-        if(sceneName == "GameScene")
-        {
-            ChangeState();
-        }
-        else if(sceneName == "testAR")
-        {
-            ChangeState();
-        }
-        else
-        {
-            return;
-        }
+        //if(sceneName == "GameScene")
+        //{
+        //    ChangeState();
+        //}
+        //else if(sceneName == "testAR")
+        //{
+        //    ChangeState();
+        //}
+        //else
+        //{
+        //    return;
+        //}
     }
 }

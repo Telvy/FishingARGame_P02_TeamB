@@ -21,7 +21,7 @@ public class PondDetector : MonoBehaviour
 
     private void OnEnable()
     {
-        _waterSplash.transform.position = this.transform.position;
+        _waterSplashInstance.transform.position = this.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
