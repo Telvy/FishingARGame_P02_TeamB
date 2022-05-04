@@ -263,6 +263,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 213881414009421836, guid: 28dc3f6650beb4b4b9356434a5e965d4,
+        type: 3}
+      propertyPath: CatchFishUI
+      value: 
+      objectReference: {fileID: 322977539}
+    - target: {fileID: 213881414009421836, guid: 28dc3f6650beb4b4b9356434a5e965d4,
+        type: 3}
+      propertyPath: PlacePondUI
+      value: 
+      objectReference: {fileID: 56352690}
+    - target: {fileID: 213881414009421836, guid: 28dc3f6650beb4b4b9356434a5e965d4,
+        type: 3}
+      propertyPath: PlaceBobberUI
+      value: 
+      objectReference: {fileID: 1541135747}
     - target: {fileID: 3434745897028639417, guid: 28dc3f6650beb4b4b9356434a5e965d4,
         type: 3}
       propertyPath: m_RootOrder
