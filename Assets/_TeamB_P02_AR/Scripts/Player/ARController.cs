@@ -28,6 +28,9 @@ public class ARController : MonoBehaviour
     [SerializeField] private AudioClip CaughtSFX;
     [SerializeField] private AudioClip MissedSFX;
 
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem CaughtFish;
+
     [Header("AR Detection")]
     public ARRaycastManager RaycastManager;
     public Camera arCamera;
@@ -179,9 +182,12 @@ public class ARController : MonoBehaviour
  
     public void fishCaught()
     {
+        Animator animator = BobberInstance.GetComponent<Animator>();
         Debug.Log("Fish Caught!");
         OneShotSoundManager.Instance.PlaySound(CaughtSFX, 1);
+        Instantiate(CaughtFish, transform.position, Quaternion.identity);
         StopAllCoroutines();
+        animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
@@ -214,12 +220,15 @@ public class ARController : MonoBehaviour
     }
     IEnumerator tillUncatchable()
     {
+        Animator animator = BobberInstance.GetComponent<Animator>();
         catchable = true;
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
+        animator.SetBool("fishHook", true);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
         StopAllCoroutines();
         OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
+        animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
