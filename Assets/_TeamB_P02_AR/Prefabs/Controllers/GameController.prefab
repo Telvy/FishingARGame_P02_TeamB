@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3352085171689376981}
   - component: {fileID: 7900737589571389139}
   - component: {fileID: 1793636093397680983}
+  - component: {fileID: 7130070868248187880}
   m_Layer: 0
   m_Name: FishingGoSM
   m_TagString: Untagged
@@ -95,7 +96,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fe3784dd297b347a349666a83439d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pondCreatedNotif: {fileID: 8300000, guid: 2f4fd9333de95584b9286fb83441d762, type: 3}
+--- !u!114 &7130070868248187880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821480431178071704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219ec67a94540f04a9744858738baef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1821480431417758575
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Random = System.Random;
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -7,43 +8,58 @@ using UnityEngine.XR.ARFoundation;
 public class ARController : MonoBehaviour
 {
     public event Action PondCreated = delegate { };
-    public event Action BobberCreated = delegate { };
+    //public event Action BobberCreated = delegate { };
 
     [Header("Main Game Play Objects")]
-    [SerializeField] private GameObject Pond;
-    [SerializeField] private GameObject Bobber;
+    [SerializeField] private GameObject PondObj;
+    [SerializeField] public GameObject BobberObj;
+    private GameObject BobberInstance = null;
+    private Transform BobberOffset;
 
     [Header("Audio Feedback")]
     [SerializeField] private AudioClip _pondCreatedNotif;
     [SerializeField] private AudioClip _bobberCreatedNotif;
+    [SerializeField] private AudioClip CatchableSFX;
+    [SerializeField] private AudioClip CaughtSFX;
+    [SerializeField] private AudioClip MissedSFX;
 
     [Header("AR Detection")]
-    private GameObject lastHitObj;
     public ARRaycastManager RaycastManager;
     public Camera arCamera;
+    [SerializeField] private LayerMask _hitLayers;
 
+    //conditional data
     private bool pondCreated = false;
     private bool bobberCreated = false;
+    private double timeTillCatchable;
+    private float timeTillUncatchable = 1.5f;
+    private bool catchable = false;
+    private int ActiveBobbers = 1;
 
     enum FishingStates
     {
         PONDCREATION,
         BOBBERCREATION,
+        CATCHINGFISH
     }
 
     private FishingStates _FishingStates;
-    private void Start()
-    {
-        
-    }
+
     private void InvokeCreatedPond()
     {
         PondCreated?.Invoke();
     }
 
-    private void InvokeCreatedBobber()
+    public void Awake()
     {
-        BobberCreated?.Invoke();
+        BobberOffset = this.gameObject.transform;
+    }
+
+    public void Start()
+    {
+        BobberInstance = Instantiate(BobberObj, BobberOffset.position, Quaternion.identity);
+        BobberInstance.transform.position = BobberOffset.position;
+        BobberInstance.SetActive(false);
     }
 
     public void Update()
@@ -61,9 +77,11 @@ public class ARController : MonoBehaviour
             case FishingStates.BOBBERCREATION:
                 CreatingBobber();
                 break;
+            case FishingStates.CATCHINGFISH:
+                CatchingFish();
+                break;
         }
     }
-
 
     public void CreatingPond()
     {
@@ -77,7 +95,7 @@ public class ARController : MonoBehaviour
 
                 if (touches.Count > 0)
                 {
-                    GameObject.Instantiate(Pond, touches[0].pose.position, touches[0].pose.rotation);
+                    GameObject.Instantiate(PondObj, touches[0].pose.position, touches[0].pose.rotation);
                     pondCreated = true;
                     OneShotSoundManager.Instance.PlaySound(_pondCreatedNotif, 1);
                     InvokeCreatedPond();
@@ -87,32 +105,106 @@ public class ARController : MonoBehaviour
         }
     }
 
-
     public void CreatingBobber()
     {
-        if (!bobberCreated)
+        if (0 < ActiveBobbers)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, _hitLayers))
                 {
-
-                    lastHitObj = hit.transform.gameObject;
                     Pond pond = hit.transform.gameObject.GetComponent<Pond>();
                     if (pond != null)
                     {
-                        Instantiate(Bobber, hit.point, Quaternion.identity);
+                        Debug.Log("Bobber spawned");
+                        BobberInstance.transform.position = hit.point;
+                        BobberInstance.SetActive(true);
                         OneShotSoundManager.Instance.PlaySound(_bobberCreatedNotif, 1);
-                        bobberCreated = true;
-                        InvokeCreatedBobber();
+                        ActiveBobbers--;
+                        _FishingStates = FishingStates.CATCHINGFISH;
                     }
                 }
             }
         }
     }
 
+    public void CatchingFish()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+            Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, _hitLayers))
+            {
+                GameObject lastHitObj = hit.transform.gameObject;
+                Bobber bobber = lastHitObj.GetComponent<Bobber>();
+                if (bobber != null)
+                {
+                    if (catchable == true)
+                    {
+                        fishCaught();
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void ResetBobbers()
+    {
+        ActiveBobbers = 1;
+    }
+
+    public void SearchForFish()
+    {
+        StartCoroutine(tillCatchable());
+    }
+ 
+    public void fishCaught()
+    {
+        Debug.Log("Fish Caught!");
+        OneShotSoundManager.Instance.PlaySound(CaughtSFX, 1);
+        StopAllCoroutines();
+        BobberInstance.SetActive(false);
+        ResetBobbers();
+        catchable = false;
+        _FishingStates = FishingStates.BOBBERCREATION;
+    }
+    //Returns a pseudorandom double between the two values passed in
+    public double RandomDoubleWithinRange(double lowerLimit, double upperLimit)
+    {
+        //defines a random variable
+        var random = new Random();
+        //uses random variable to instaniate a pseudorandom double between 0 & 1
+        var rDouble = random.NextDouble();
+        //Converts the random double to a number between lowerLimit & upperLimit
+        rDouble = rDouble * (upperLimit - lowerLimit) + lowerLimit;
+        return rDouble;
+    }
+    //A coroutine to wait a random amount of time till the fish is catchable
+    IEnumerator tillCatchable()
+    {
+        //gets a random double between 1-10
+        timeTillCatchable = RandomDoubleWithinRange(1, 10);
+        //Waits timeTillCatchable (in seconds)
+        yield return new WaitForSeconds((float)timeTillCatchable);
+        StartCoroutine(tillUncatchable());
+    }
+    IEnumerator tillUncatchable()
+    {
+        catchable = true;
+        OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
+        yield return new WaitForSeconds(timeTillUncatchable);
+        Debug.Log("Fish escaped!");
+        StopAllCoroutines();
+        OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
+        BobberInstance.SetActive(false);
+        ResetBobbers();
+        catchable = false;
+        _FishingStates = FishingStates.BOBBERCREATION;
+    }
 }
 
 
