@@ -26,8 +26,8 @@ public class ARController : MonoBehaviour
     [SerializeField] private AudioClip _bobberCreatedNotif;
     [SerializeField] private AudioClip CatchableSFX;
     [SerializeField] private AudioClip CaughtSFX;
-    [SerializeField] private AudioClip MissedSFX;
-
+    [SerializeField] private AudioClip MissedSFX;
+
     [Header("VFX")]
     [SerializeField] private ParticleSystem CaughtFish;
 
@@ -190,9 +190,9 @@ public class ARController : MonoBehaviour
         animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
-        catchable = false;
-
-        //Close Catch Fish and open Place Bobber UI
+        catchable = false;
+
+        //Close Catch Fish and open Place Bobber UI
         CatchFishUI.SetActive(false);
         PlaceBobberUI.SetActive(true);
 
