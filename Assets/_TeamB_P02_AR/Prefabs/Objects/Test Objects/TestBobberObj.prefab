@@ -142,6 +142,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   range: 10
+  animator: {fileID: -7692734567220631493}
 --- !u!95 &-7692734567220631493
 Animator:
   serializedVersion: 3
