@@ -24,6 +24,7 @@ public class testPond : MonoBehaviour
     [SerializeField] AudioClip CatchableSFX;
     [SerializeField] AudioClip CaughtSFX;
     [SerializeField] AudioClip MissedSFX;
+    [SerializeField] ParticleSystem _caughtFish;
 
     //conditional data
     //private bool bobberCreated = false;
@@ -99,9 +100,12 @@ public class testPond : MonoBehaviour
     }
     public void fishCaught()
     {
+        Animator animator = BobberInstance.GetComponent<Animator>();
         Debug.Log("Fish Caught!");
         OneShotSoundManager.Instance.PlaySound(CaughtSFX, 1);
+        Instantiate(_caughtFish, transform.position, Quaternion.identity);
         StopAllCoroutines();
+        animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
@@ -128,12 +132,15 @@ public class testPond : MonoBehaviour
     }
     IEnumerator tillUncatchable()
     {
+        Animator animator = BobberInstance.GetComponent<Animator>();
         catchable = true;
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
+        animator.SetBool("fishHook", true);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
         StopAllCoroutines();
         OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
+        animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
         ResetBobbers();
         catchable = false;
