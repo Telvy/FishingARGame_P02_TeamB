@@ -50,6 +50,11 @@ public class testPond : MonoBehaviour
         {
             SpawnBobber();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(RandomDoubleWithinRange(0, 1.0));
+        }
        
     }
 
@@ -157,13 +162,14 @@ public class testPond : MonoBehaviour
         double chance = RandomDoubleWithinRange(0, 1.0);
         for (int i = 0; i < CatchableObj.Length; i++)
         {
-            if (chance > CatchableObj[i].catchChance)
+            if (chance <= CatchableObj[i].catchChance)
             {
                 caughtItem = CatchableObj[i].CatchableObj;
+                break;
             }
-            else 
+            else
             {
-                caughtItem = CatchableObj[0].CatchableObj;
+                chance -= CatchableObj[i].catchChance;
             }
         }
 

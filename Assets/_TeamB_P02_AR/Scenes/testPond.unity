@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -386,6 +386,41 @@ PrefabInstance:
       propertyPath: SpinningCatchable
       value: 
       objectReference: {fileID: 1494786981}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 419803961b259464ba7395b25bd7c1bf,
+        type: 2}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: eaf99e7dcff1dc14dbb88082741c6feb,
+        type: 2}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dfaa64198a1cb24ab6f6495cbb322c2,
+        type: 2}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de769d9da2651e4f8af131a48f274ed,
+        type: 2}
+    - target: {fileID: 3083729691521216704, guid: d05f4efb2f946b341ae8bb60a857a909,
+        type: 3}
+      propertyPath: CatchableObj.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: adc9effd893909c43bd0646ad8cfd83c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d05f4efb2f946b341ae8bb60a857a909, type: 3}
 --- !u!1 &1443326961

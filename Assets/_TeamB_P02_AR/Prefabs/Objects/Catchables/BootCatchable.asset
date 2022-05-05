@@ -16,4 +16,4 @@ MonoBehaviour:
   CatchableObj: {fileID: 1944049621651983952, guid: 0c5cff26770087c41ba056ec17935c11,
     type: 3}
   IsJunk: 1
-  catchChance: 0.54
+  catchChance: 0.2

@@ -455,7 +455,10 @@ MonoBehaviour:
   BobberObj: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8,
     type: 3}
   CatchableObj:
+  - {fileID: 11400000, guid: 419803961b259464ba7395b25bd7c1bf, type: 2}
   - {fileID: 11400000, guid: eaf99e7dcff1dc14dbb88082741c6feb, type: 2}
+  - {fileID: 11400000, guid: 6dfaa64198a1cb24ab6f6495cbb322c2, type: 2}
+  - {fileID: 11400000, guid: 1de769d9da2651e4f8af131a48f274ed, type: 2}
   - {fileID: 11400000, guid: adc9effd893909c43bd0646ad8cfd83c, type: 2}
   PlacePondUI: {fileID: 0}
   PlaceBobberUI: {fileID: 0}
@@ -571,7 +574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693209887777042649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3434745897028639417}

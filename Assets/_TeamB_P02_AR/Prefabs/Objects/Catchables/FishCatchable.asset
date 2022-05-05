@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047346f22c556a744b836f233bf0b277, type: 3}
   m_Name: FishCatchable
   m_EditorClassIdentifier: 
-  CatchableName: Generic Fish
+  CatchableName: Fish
   CatchableObj: {fileID: 6191291926265391906, guid: 315e7a8d6370f8f4faebaca041858b98,
     type: 3}
   IsJunk: 0
-  catchChance: 0.79
+  catchChance: 0.5
