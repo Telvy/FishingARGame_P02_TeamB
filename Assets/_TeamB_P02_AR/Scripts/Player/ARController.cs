@@ -32,7 +32,7 @@ public class ARController : MonoBehaviour
     [Header("AR Detection")]
     public ARRaycastManager RaycastManager;
     public Camera arCamera;
-    [SerializeField] private LayerMask _bobberLayer, _pondLayer;
+    [SerializeField] private LayerMask _hitLayer;
 
     //conditional data
     private bool pondCreated = false;
@@ -124,10 +124,9 @@ public class ARController : MonoBehaviour
             {
                 Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _pondLayer))
+                if (Physics.Raycast(ray, out hit, _hitLayer))
                 {
                     Pond pond = hit.transform.gameObject.GetComponent<Pond>();
-                    Debug.Log(hit.point);
                     if (pond != null)
                     {
                         Debug.Log("Bobber spawned");
@@ -152,7 +151,7 @@ public class ARController : MonoBehaviour
             {
             Ray ray = arCamera.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, _bobberLayer))
+            if (Physics.Raycast(ray, out hit, _hitLayer))
             {
                 GameObject lastHitObj = hit.transform.gameObject;
                 Bobber bobber = lastHitObj.GetComponent<Bobber>();

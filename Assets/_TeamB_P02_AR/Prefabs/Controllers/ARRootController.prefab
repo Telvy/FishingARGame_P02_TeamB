@@ -464,12 +464,9 @@ MonoBehaviour:
     type: 3}
   RaycastManager: {fileID: 213881414330124265}
   arCamera: {fileID: 213881413816950576}
-  _bobberLayer:
+  _hitLayer:
     serializedVersion: 2
     m_Bits: 64
-  _pondLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &213881414330124180
 GameObject:
   m_ObjectHideFlags: 0
