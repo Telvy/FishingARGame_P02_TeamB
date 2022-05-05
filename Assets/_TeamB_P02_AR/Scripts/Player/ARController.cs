@@ -8,7 +8,6 @@ using UnityEngine.XR.ARFoundation;
 public class ARController : MonoBehaviour
 {
     public event Action PondCreated = delegate { };
-    //public event Action BobberCreated = delegate { };
 
     [Header("Main Game Play Objects")]
     [SerializeField] private GameObject PondObj;
@@ -192,7 +191,6 @@ public class ARController : MonoBehaviour
 
 
         //Close Catch Fish and open Place Bobber UI
-
         CatchFishUI.SetActive(false);
         PlaceBobberUI.SetActive(true);
 
@@ -223,7 +221,7 @@ public class ARController : MonoBehaviour
         Animator animator = BobberInstance.GetComponent<Animator>();
         catchable = true;
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
-        animator.SetBool("fishHook", true);
+        //animator.SetBool("fishHook", true);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
         StopAllCoroutines();
