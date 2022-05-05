@@ -8,6 +8,6 @@ public class BaseCatchable : ScriptableObject
     public string CatchableName;
     public GameObject CatchableObj;
     public bool IsJunk;
-    public float catchChance;
+    public double catchChance;
 }
 

@@ -6,16 +6,11 @@ public class TestBobber : MonoBehaviour
 {
     TestBobberPool _testBobberpool = null;
     public Animator testBobberAnimator = null;
-    [SerializeField] AudioClip _bobberCreatedSFX;
+
 
     private void Awake()
     {
         testBobberAnimator = GetComponent<Animator>();
-    }
-
-    private void OnEnable()
-    {
-        OneShotSoundManager.Instance.PlaySound(_bobberCreatedSFX, 1);
     }
 
     public void AssignPool(TestBobberPool testBobberPool)
