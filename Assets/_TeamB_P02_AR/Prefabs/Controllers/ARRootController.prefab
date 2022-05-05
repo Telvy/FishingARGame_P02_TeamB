@@ -454,6 +454,9 @@ MonoBehaviour:
   PondObj: {fileID: 2809564474010436445, guid: 0058adffadebc0c4ab9c113bf187a73b, type: 3}
   BobberObj: {fileID: 5705975684793789146, guid: 967234b10bb0ba64dbf48b9a6cf9d7f8,
     type: 3}
+  CatchableObj:
+  - {fileID: 11400000, guid: eaf99e7dcff1dc14dbb88082741c6feb, type: 2}
+  - {fileID: 11400000, guid: adc9effd893909c43bd0646ad8cfd83c, type: 2}
   PlacePondUI: {fileID: 0}
   PlaceBobberUI: {fileID: 0}
   CatchFishUI: {fileID: 0}
@@ -462,6 +465,7 @@ MonoBehaviour:
   MissedSFX: {fileID: 8300000, guid: 115fc774747e9964e86e5511e48289ec, type: 3}
   CaughtFish: {fileID: -1113239985529769606, guid: 3e1439d1c56409145b2968688de51f40,
     type: 3}
+  SpinningCatchable: {fileID: 7964630658139346670}
   RaycastManager: {fileID: 213881414330124265}
   arCamera: {fileID: 213881413816950576}
   _hitLayer:
@@ -542,6 +546,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastPrefab: {fileID: 0}
+--- !u!1 &1693209887777042649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4809777249613582419}
+  - component: {fileID: 7964630658139346670}
+  m_Layer: 0
+  m_Name: DisplayCatchable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4809777249613582419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693209887777042649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3434745897028639417}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7964630658139346670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693209887777042649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f66049cc517434c884da71a1fcb849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8698845285319216167
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +621,7 @@ Transform:
   - {fileID: 213881414330124182}
   - {fileID: 213881412970242041}
   - {fileID: 213881414009421837}
+  - {fileID: 4809777249613582419}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

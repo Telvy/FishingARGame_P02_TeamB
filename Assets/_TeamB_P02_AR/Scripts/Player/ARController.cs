@@ -14,6 +14,7 @@ public class ARController : MonoBehaviour
     [SerializeField] public GameObject BobberObj;
     private GameObject BobberInstance = null;
     private Transform BobberOffset;
+    [SerializeField] private BaseCatchable[] CatchableObj;
 
     [Header("UI Elements")]
     [SerializeField] private GameObject PlacePondUI;
@@ -27,6 +28,7 @@ public class ARController : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem CaughtFish;
+    [SerializeField] Spin SpinningCatchable;
 
     [Header("AR Detection")]
     public ARRaycastManager RaycastManager;
@@ -185,17 +187,27 @@ public class ARController : MonoBehaviour
         StopAllCoroutines();
         animator.SetBool("fishHook", false);
         BobberInstance.SetActive(false);
-        ResetBobbers();
-        catchable = false;
-
-
 
         //Close Catch Fish and open Place Bobber UI
         CatchFishUI.SetActive(false);
         PlaceBobberUI.SetActive(true);
 
+        StartCoroutine(DisplayCatch());
         _FishingStates = FishingStates.BOBBERCREATION;
     }
+
+    IEnumerator DisplayCatch()
+    {
+        float time = 5;
+        GameObject caughtFish = Instantiate(DetermineCatch(), SpinningCatchable.transform.position, Quaternion.identity);
+        caughtFish.transform.parent = SpinningCatchable.transform;
+        Destroy(caughtFish, time);
+        yield return new WaitForSeconds(time);
+        ResetBobbers();
+        catchable = false;
+    }
+
+
     //Returns a pseudorandom double between the two values passed in
     public double RandomDoubleWithinRange(double lowerLimit, double upperLimit)
     {
@@ -236,6 +248,26 @@ public class ARController : MonoBehaviour
         PlaceBobberUI.SetActive(true);
 
         _FishingStates = FishingStates.BOBBERCREATION;
+    }
+
+    private GameObject DetermineCatch()
+    {
+        GameObject caughtItem = null;
+
+        double chance = RandomDoubleWithinRange(0, 1.0);
+        for (int i = 0; i < CatchableObj.Length; i++)
+        {
+            if (chance > CatchableObj[i].catchChance)
+            {
+                caughtItem = CatchableObj[i].CatchableObj;
+            }
+            else
+            {
+                caughtItem = CatchableObj[0].CatchableObj;
+            }
+        }
+
+        return caughtItem;
     }
 }
 
