@@ -8,16 +8,13 @@ public class testPond : MonoBehaviour
     //TEST DATA
     [Header("Data")]
     [SerializeField] private LayerMask _hitLayers;
-    [SerializeField] private Transform SpawnerPoint;
     private float range = 10;
+    [SerializeField] private Camera camera;
+    private TestBobber newTestBobber;
     
     //TEST DATA
 
     [Header("Main Game Play Objects")]
-    [SerializeField] public TestBobber TestBobber;
-    [SerializeField] public GameObject TestBobberObj;
-    private GameObject BobberInstance = null;
-    [SerializeField] private Transform BobberOffset;
 
     [Header("FX/Animiation")]
     [SerializeField] AudioClip _bobberCreatedSFX;
@@ -25,6 +22,9 @@ public class testPond : MonoBehaviour
     [SerializeField] AudioClip CaughtSFX;
     [SerializeField] AudioClip MissedSFX;
     [SerializeField] ParticleSystem _caughtFish;
+
+    [Header("Object Pooling")]
+    [SerializeField] TestBobberPool BobberPool;
 
     //conditional data
     //private bool bobberCreated = false;
@@ -35,14 +35,12 @@ public class testPond : MonoBehaviour
 
     public void Awake()
     {
-        BobberOffset = this.gameObject.transform;
+        //BobberOffset = this.gameObject.transform;
     }
 
     public void Start()
     {
-        BobberInstance = Instantiate(TestBobberObj, BobberOffset.position, Quaternion.identity);
-        BobberInstance.transform.position = BobberOffset.position;
-        BobberInstance.SetActive(false);
+
     }
 
     //Checks for user input to catch fish
@@ -58,28 +56,75 @@ public class testPond : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             SpawnBobber();
+            //TestRaycast();
+        }
+       
+    }
+
+    //private void SpawnBobber()
+    //{
+    //    if(0 < ActiveBobbers)
+    //    {
+    //        Vector3 direction = Vector3.down;
+    //        Ray ray = new Ray(SpawnerPoint.position, transform.TransformDirection(direction * range));
+    //        RaycastHit hit;
+    //        Debug.DrawRay(SpawnerPoint.position, transform.TransformDirection(direction * range));
+    //        if (Physics.Raycast(ray, out hit, _hitLayers))
+    //        {
+    //            testPond testpond = hit.transform.gameObject.GetComponent<testPond>();
+    //            if (testpond != null)
+    //            {
+    //                Debug.Log("Bobber spawned");
+    //                BobberInstance.transform.position = hit.point;
+    //                BobberInstance.SetActive(true);
+    //                OneShotSoundManager.Instance.PlaySound(_bobberCreatedSFX, 1);
+    //                ActiveBobbers--;
+    //                //bobberCreated = true;
+    //            }
+    //        }
+    //    }
+    //}
+
+    private void TestRaycast()
+    {
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+        RaycastHit hit;
+       
+        if (Physics.Raycast(ray, out hit, _hitLayers))
+        {
+            Debug.DrawRay(ray.origin, forward, Color.green, 100f); // only draws once. Re-clicking does nothing
+            Debug.Log(hit.transform.name);
         }
     }
 
+    private void OnDrawGizmos()
+    {
+ 
+    }
     private void SpawnBobber()
     {
         if(0 < ActiveBobbers)
         {
-            Vector3 direction = Vector3.down;
-            Ray ray = new Ray(SpawnerPoint.position, transform.TransformDirection(direction * range));
-            RaycastHit hit;
-            Debug.DrawRay(SpawnerPoint.position, transform.TransformDirection(direction * range));
-            if (Physics.Raycast(ray, out hit, _hitLayers))
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, _hitLayers))
             {
+                Debug.DrawRay(ray.origin, hit.collider.transform.position, Color.green); // only draws once. Re-clicking does nothing
                 testPond testpond = hit.transform.gameObject.GetComponent<testPond>();
                 if (testpond != null)
                 {
+                    
                     Debug.Log("Bobber spawned");
-                    BobberInstance.transform.position = hit.point;
-                    BobberInstance.SetActive(true);
+                    Debug.Log(hit.point);
+                    
+                    newTestBobber.AssignPool(BobberPool);
+                    newTestBobber = BobberPool.ActivateFromPool();
+                    Debug.Log(newTestBobber);
+                    newTestBobber.transform.position = hit.point;
+                    newTestBobber.gameObject.SetActive(true);
                     OneShotSoundManager.Instance.PlaySound(_bobberCreatedSFX, 1);
                     ActiveBobbers--;
                     //bobberCreated = true;
@@ -100,13 +145,12 @@ public class testPond : MonoBehaviour
     }
     public void fishCaught()
     {
-        Animator animator = BobberInstance.GetComponent<Animator>();
         Debug.Log("Fish Caught!");
         OneShotSoundManager.Instance.PlaySound(CaughtSFX, 1);
         Instantiate(_caughtFish, transform.position, Quaternion.identity);
         StopAllCoroutines();
-        animator.SetBool("fishHook", false);
-        BobberInstance.SetActive(false);
+        newTestBobber.testBobberAnimator.SetBool("fishHook", false);
+        newTestBobber.gameObject.SetActive(false);
         ResetBobbers();
         catchable = false;
     }
@@ -132,16 +176,15 @@ public class testPond : MonoBehaviour
     }
     IEnumerator tillUncatchable()
     {
-        Animator animator = BobberInstance.GetComponent<Animator>();
         catchable = true;
         OneShotSoundManager.Instance.PlaySound(CatchableSFX, 1);
-        animator.SetBool("fishHook", true);
+        newTestBobber.testBobberAnimator.SetBool("fishHook", true);
         yield return new WaitForSeconds(timeTillUncatchable);
         Debug.Log("Fish escaped!");
         StopAllCoroutines();
         OneShotSoundManager.Instance.PlaySound(MissedSFX, 1);
-        animator.SetBool("fishHook", false);
-        BobberInstance.SetActive(false);
+        newTestBobber.testBobberAnimator.SetBool("fishHook", false);
+        newTestBobber.gameObject.SetActive(false);
         ResetBobbers();
         catchable = false;
     }

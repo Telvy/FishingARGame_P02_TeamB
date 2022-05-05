@@ -418,7 +418,6 @@ GameObject:
   m_Component:
   - component: {fileID: 213881414009421837}
   - component: {fileID: 213881414009421836}
-  - component: {fileID: 7529839485545646195}
   m_Layer: 0
   m_Name: AR Controller
   m_TagString: Untagged
@@ -471,18 +470,6 @@ MonoBehaviour:
   _pondLayer:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &7529839485545646195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213881414009421834}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 715b3d4a772ea2a4da934dbf8fa52065, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &213881414330124180
 GameObject:
   m_ObjectHideFlags: 0

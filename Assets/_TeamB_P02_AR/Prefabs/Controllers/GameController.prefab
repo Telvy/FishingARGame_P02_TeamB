@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1821480431417758574}
   - component: {fileID: 1821480431417758577}
+  - component: {fileID: 542197188385460608}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -155,3 +156,15 @@ MonoBehaviour:
   FishGoSM: {fileID: 1821480431178071707}
   ARRootController: {fileID: 8698845285319216167, guid: 28dc3f6650beb4b4b9356434a5e965d4,
     type: 3}
+--- !u!114 &542197188385460608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821480431417758575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715b3d4a772ea2a4da934dbf8fa52065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

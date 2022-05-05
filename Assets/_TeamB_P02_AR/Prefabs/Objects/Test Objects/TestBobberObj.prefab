@@ -136,13 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87b14c8e48cc1e4c8a5edfa1c571eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waterSplash: {fileID: 1376729219401198430, guid: b6ba128b50fc1654db24e4af37b0547a,
-    type: 3}
-  _hitLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  range: 10
-  animator: {fileID: -7692734567220631493}
+  testBobberAnimator: {fileID: 0}
+  _bobberCreatedSFX: {fileID: 8300000, guid: 05973c37e4e6c784aa451d2b834e0f8f, type: 3}
 --- !u!95 &-7692734567220631493
 Animator:
   serializedVersion: 3

@@ -22,12 +22,9 @@ public class ARController : MonoBehaviour
     [SerializeField] private GameObject CatchFishUI;
 
     [Header("Audio Feedback")]
-    
     [SerializeField] private AudioClip CatchableSFX;
     [SerializeField] private AudioClip CaughtSFX;
     [SerializeField] private AudioClip MissedSFX;
-
-
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem CaughtFish;
@@ -104,6 +101,7 @@ public class ARController : MonoBehaviour
 
                 if (touches.Count > 0)
                 {
+                    Debug.Log("Pond created");
                     GameObject.Instantiate(PondObj, touches[0].pose.position, touches[0].pose.rotation);
                     pondCreated = true;
 
@@ -129,6 +127,7 @@ public class ARController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, _pondLayer))
                 {
                     Pond pond = hit.transform.gameObject.GetComponent<Pond>();
+                    Debug.Log(hit.point);
                     if (pond != null)
                     {
                         Debug.Log("Bobber spawned");

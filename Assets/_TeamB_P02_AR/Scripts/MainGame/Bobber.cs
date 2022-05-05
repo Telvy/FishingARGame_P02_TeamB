@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bobber : MonoBehaviour
 {
     [SerializeField] private AudioClip _bobberCreatedNotif;
+    [SerializeField] 
 
     private void OnEnable()
     {
